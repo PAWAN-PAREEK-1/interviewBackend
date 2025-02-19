@@ -3,9 +3,10 @@ import createError from '../utils/createError.js';
 
 export const createTask = async (req, res, next) => {
   try {
-    const { title, completed, priority, dueDate } = req.body;
+    const { title, completed, priority, dueDate ,reminderDate } = req.body;
 
     if (!title) return res.status(400).json({ message: 'Title is required' });
+  
 
     const newTask = new Task({
       title,
@@ -13,6 +14,7 @@ export const createTask = async (req, res, next) => {
       priority: priority || 'medium',
       dueDate: dueDate ? new Date(dueDate) : null,
       user: req.user.id,
+      reminderDate
     });
 
     const savedTask = await newTask.save();

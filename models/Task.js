@@ -21,13 +21,14 @@ const taskSchema = new Schema(
     },
     dueDate: {
       type: Date,
-      required: false, 
+      required: false,
     },
     user: {
       type: Schema.Types.ObjectId,
       ref: 'User',
       required: true,
     },
+    reminderDate: { type: Date , required: false},
   },
   { timestamps: true }
 );
